@@ -52,5 +52,5 @@ jobs:
           insecure_password: ${{ secrets.SERVER_PW }}
           insecure_ignore_fingerprint: true
           source: |
-            sonaz87/cd/main.py
+            https://github.com/sonaz87/cd/main.py
           target: ${{ secrets.SSH_DIR }}
