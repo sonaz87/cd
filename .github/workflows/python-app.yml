@@ -42,12 +42,12 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@master
 
-      - name: Upload file via SSH
-        uses: shimataro/ssh-key-action@v2
-        with:
-          key: ${{ secrets.SSH_KEY }}
-          name: root
-          known_hosts: ${{ secrets.SSH_FINGERPRINT }}
-      - name: Pull
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
         if: steps.Test_with_pytest.outputs.exit_code == 0
-        run: ssh root@164.92.153.115 22
+        with:
+            host: ${{ secrets.SERVER_IP }}
+            username: ${{ secrets.SSH_USER }}
+            password: ${{ secrets.SERVER_PW }}
+            port: 22
+            script: whoami
