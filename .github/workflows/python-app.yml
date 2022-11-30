@@ -48,7 +48,7 @@ jobs:
         with:
           direction: upload
           host: ${{ secrets.SERVER_IP }}
-          insecure-password: ${{ secrets.SERVER_PW }}
+          insecure_password: ${{ secrets.SERVER_PW }}
           key: ${{ secrets.SSH_KEY }}
           source: |
             sonaz87/cd/main.py
