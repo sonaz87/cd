@@ -37,7 +37,6 @@ jobs:
         pytest test_main.py > output.log
     - name: FTP-Deploy-Action
       if: steps.Test_with_pytest.outputs.exit_code == 0
-      uses: sonaz87/FTP-Deploy-Action@3.1.1
       
       with:
         ftp-server: ftp:/164.92.153.115:21
