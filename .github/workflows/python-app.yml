@@ -50,4 +50,4 @@ jobs:
           known_hosts: ${{ secrets.SSH_FINGERPRINT }}
       - name: Pull
         if: steps.Test_with_pytest.outputs.exit_code == 0
-        run: ssh root@${{secrets.SERVER_IP}}
+        run: ssh root@164.92.153.115 22
