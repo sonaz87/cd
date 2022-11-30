@@ -50,7 +50,7 @@ jobs:
           host: ${{ secrets.SERVER_IP }}
           insecure_password: ${{ secrets.SERVER_PW }}
           key: ${{ secrets.SSH_KEY }}
-          fingerprint: $ {{ secrets.SSH_FINGERPRINT }}
+          insecure_ignore_fingerprint: true
           source: |
             sonaz87/cd/main.py
           target: ${{ secrets.SSH_DIR }}
