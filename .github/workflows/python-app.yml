@@ -35,11 +35,23 @@ jobs:
     - name: Test_with_pytest
       run: |
         pytest test_main.py > output.log
-    - name: FTP-Deploy-Action
-      if: steps.Test_with_pytest.outputs.exit_code == 0
-      uses: SamKirkland/FTP-Deploy-Action@4.3.2
-      with:
-        server: 164.92.153.115
-        PORT: 21 
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_USER_PW }}
+  upload:
+    name: Upload
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@master
+
+      - name: Upload file via SSH
+        if: steps.Test_with_pytest.outputs.exit_code == 0
+        uses: nicklasfrahm/scp-action@main
+        with:
+          direction: upload
+          host: ${{ secrets.SERVER_IP }}
+          fingerprint: ${{ secrets.SSH_FINGERPRINT }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          insecure_password: $ {{ secrets.SERVER_PW }}
+          source: |
+            /main.py
+          target: ${{ secrets.SSH_DIR }}
