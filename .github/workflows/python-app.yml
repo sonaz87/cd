@@ -38,7 +38,7 @@ jobs:
 
   FTP-Deploy-Action:
     name: FTP-Deploy-Action
-    if: steps.build.outcome == 'success'
+    if: jobs.build.outcome == 'success'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
