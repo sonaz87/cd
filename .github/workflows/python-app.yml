@@ -51,7 +51,7 @@ jobs:
           fingerprint: ${{ secrets.SSH_FINGERPRINT }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          insecure_password: $ {{ secrets.SERVER_PW }}
+          password: $ {{ secrets.SERVER_PW }}
           source: |
             /main.py
           target: ${{ secrets.SSH_DIR }}
