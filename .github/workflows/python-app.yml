@@ -48,8 +48,7 @@ jobs:
         with:
           direction: upload
           host: ${{ secrets.SERVER_IP }}
-          fingerprint: ${{ secrets.SSH_FINGERPRINT }}
-          username: ${{ secrets.SSH_USER }}
+          insecure-password: ${{ secrets.SERVER_PW }}
           key: ${{ secrets.SSH_KEY }}
           source: |
             sonaz87/cd/main.py
