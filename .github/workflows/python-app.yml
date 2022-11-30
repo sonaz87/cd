@@ -48,8 +48,8 @@ jobs:
         with:
           direction: upload
           host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SSH_USER }}
           insecure_password: ${{ secrets.SERVER_PW }}
-          key: ${{ secrets.SSH_KEY }}
           insecure_ignore_fingerprint: true
           source: |
             sonaz87/cd/main.py
