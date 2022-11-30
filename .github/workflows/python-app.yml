@@ -43,11 +43,11 @@ jobs:
         uses: actions/checkout@master
 
       - name: Upload file via SSH
-        if: steps.Test_with_pytest.outputs.exit_code == 0
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.SSH_KEY }}
           name: root
           know_hosts: ${{ secrets.SSH_FINGERPRINT }}
       - name: Pull
-        run ssh root@${{secrets.SERVER_IP}} "cd /var/www/html/ && usr/bin/git pull origin master
+        if: steps.Test_with_pytest.outputs.exit_code == 0
+        run: ssh root@${{secrets.SERVER_IP}} "cd /var/www/html/ && usr/bin/git pull origin master
