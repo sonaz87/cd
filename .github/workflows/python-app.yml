@@ -39,6 +39,7 @@ jobs:
       if: steps.Test_with_pytest.outputs.exit_code == 0
       uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
-        server: ftp://164.92.153.115:21
+        server: 164.92.153.115
+        PORT: 21 
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_USER_PW }}
