@@ -37,7 +37,7 @@ jobs:
         pytest test_main.py > output.log
     - name: FTP-Deploy-Action
       if: steps.Test_with_pytest.outputs.exit_code == 0
-      
+      uses: SamKirkland/FTP-Deploy-Action@4.3.2
       with:
         ftp-server: ftp:/164.92.153.115:21
         ftp-username: ${{ secrets.FTP_USERNAME }}
