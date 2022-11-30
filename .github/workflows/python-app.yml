@@ -44,13 +44,10 @@ jobs:
 
       - name: Upload file via SSH
         if: steps.Test_with_pytest.outputs.exit_code == 0
-        uses: nicklasfrahm/scp-action@main
+        uses: shimataro/ssh-key-action@v2
         with:
-          direction: upload
-          host: ${{ secrets.SERVER_IP }}
-          username: ${{ secrets.SSH_USER }}
-          insecure_password: ${{ secrets.SERVER_PW }}
-          insecure_ignore_fingerprint: true
-          source: |
-            https://github.com/sonaz87/cd/blob/main/main.py
-          target: ${{ secrets.SSH_DIR }}
+          key: ${{ secrets.SSH_KEY }}
+          name: root
+          know_hosts: ${{ secrets.SSH_FINGERPRINT }}
+      - name: Pull
+        run ssh root@${{secrets.SERVER_IP}} "cd /var/www/html/ && usr/bin/git pull origin master
